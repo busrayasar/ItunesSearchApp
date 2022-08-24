@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_btw_pages"
+    app:startDestination="@id/placeholderFragment">
+
+    <fragment
+        android:id="@+id/detailPageFragment2"
+        android:name="com.busrayasar.itunessearchapp.ui.main.view.DetailPageFragment"
+        android:label="fragment_detail_page"
+        tools:layout="@layout/fragment_detail_page" >
+        <action
+            android:id="@+id/action_detailPageFragment2_to_placeholderFragment"
+            app:destination="@id/placeholderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/placeholderFragment"
+        android:name="com.busrayasar.itunessearchapp.ui.main.adapter.PlaceholderFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_placeholderFragment_to_detailPageFragment2"
+            app:destination="@id/detailPageFragment2" />
+    </fragment>
+</navigation>
