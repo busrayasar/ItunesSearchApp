@@ -9,5 +9,5 @@ How to run:
 
 Download the .zip project
 Extract a folder.
-Open with ANdroid Studio
+Open with Android Studio
 Build an run the project.
