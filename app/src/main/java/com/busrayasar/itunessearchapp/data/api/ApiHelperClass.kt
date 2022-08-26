@@ -9,4 +9,16 @@ class ApiHelperClass(private val apiService: ApiService) {
         Log.e("queryApiHelper", query)
         return apiService.getQuery(query, limit)
     }
+    fun searchMusicFromQuery(query: String, limit: Int): Single<Model>{
+        Log.e("queryApiHelper", query)
+        return apiService.getQuery(query, limit)
+    }
+    fun searchEbookFromQuery(query: String, limit: Int): Single<Model>{
+        Log.e("queryApiHelper", query)
+        return apiService.getQuery(query, limit)
+    }
+    fun searchPodcastFromQuery(query: String, limit: Int): Single<Model>{
+        Log.e("queryApiHelper", query)
+        return apiService.getQuery(query, limit)
+    }
 }

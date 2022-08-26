@@ -15,15 +15,17 @@ import com.bumptech.glide.Glide
 import com.busrayasar.itunessearchapp.R
 import com.busrayasar.itunessearchapp.ui.main.view.DetailPageFragment
 import com.busrayasar.itunessearchapp.data.model.Result
+import com.busrayasar.itunessearchapp.ui.main.view.MainFragmentDirections
 
 class ItunesAdapter(private val data: ArrayList<Result>):
     RecyclerView.Adapter<ItunesAdapter.DataViewHolder>() {
-    class DataViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
         val textViewCollectionName: TextView
         val imageViewAvatar: ImageView
         init {
-            textViewCollectionName = view.findViewById(R.id.textView_item)
-            imageViewAvatar = view.findViewById(R.id.imageView_item)
+            textViewCollectionName = itemView.findViewById(R.id.textView_item)
+            imageViewAvatar = itemView.findViewById(R.id.imageView_item)
         }
 
         fun bind(data: Result) {
@@ -43,18 +45,21 @@ class ItunesAdapter(private val data: ArrayList<Result>):
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
         holder.bind(data[position])
+        //recyclerviewdaki item tık
         holder.itemView.setOnClickListener {
             val resultData = data[position]
 
             Log.e("adapter", resultData.collectionName)
 
-            val action = PlaceholderFragmentDirections.actionPlaceholderFragmentToDetailPageFragment2()
-           // action.name = resultData.collectionName
-            //action.avatar = resultData.artworkUrl100
-            //action.detail = resultData.collectionPrice.toString()
+            val action = MainFragmentDirections.actionMainFragmentToDetailPageFragment()
+          // action.name = resultData.collectionName
+            //action.avatarArtWorkUrl100 = resultData.artworkUrl100
+            //action.price = resultData.collectionPrice.toString()
+            //action.releaseDate = resultData.releaseDate.toString()
             val navController = Navigation.findNavController(holder.itemView)
             navController.navigate(action)
         }
+
 
     }
 
@@ -67,13 +72,12 @@ class ItunesAdapter(private val data: ArrayList<Result>):
         data.addAll(list)
     }
 
+    //gelen item listesini güncelle
     fun changeData(newList: ArrayList<Result>){
         this.data.clear()
         this.data.addAll(newList)
         notifyDataSetChanged()
     }
-
-
 
 }
 

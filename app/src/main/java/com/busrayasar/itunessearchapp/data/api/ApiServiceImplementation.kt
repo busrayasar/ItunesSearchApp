@@ -12,7 +12,6 @@ class ApiServiceImplementation : ApiService {
             .addQueryParameter("limit", limit.toString())
             .build()
             .getObjectSingle(Model::class.java)
-
     }
 
 }

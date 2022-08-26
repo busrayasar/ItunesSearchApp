@@ -14,3 +14,8 @@ interface ApiService {
         @Query("limit") limit: Int
     ):Single<Model>
 }
+
+/*
+* Single<T> -> Emits either a single item or an error event. The reactive version of a method call.
+* Yani bir tane single item alıyor, veriyi bir kere çekiyor ve duruyor
+* */

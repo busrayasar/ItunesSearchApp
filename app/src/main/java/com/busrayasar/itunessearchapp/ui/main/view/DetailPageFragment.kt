@@ -15,6 +15,8 @@ import com.busrayasar.itunessearchapp.databinding.FragmentDetailPageBinding
 class DetailPageFragment : Fragment() {
   private lateinit var binding: FragmentDetailPageBinding
 
+  //private lateinit var detailResultViewModel: DetailPageViewModel
+
   override fun onCreate(savedInstanceState: Bundle?){
       super.onCreate(savedInstanceState)
   }
@@ -32,20 +34,26 @@ class DetailPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val name = arguments?.getString("name")
-        val imageUrl = arguments?.getString("avatar")
-        val description = arguments?.getString("detail")
+       // detailResultViewModel= ViewModelProviders.of(this).get(DetailPageViewModel::class.java)
+
+// Her item “artworkUrl100, collectionPrice, collectionName, releaseDate” bilgilerini içermeli.
+        val name = arguments?.getString("name") //collectionName
+        val imageUrl = arguments?.getString("avatarArtWorkUrl100")
+        val releaseDate = arguments?.getString("releaseDate")
+        val collectionPrice = arguments?.getString("price")
 
 
         binding.tvDetailName.text = name
-        binding.tvDetailPrice.text = description
+        binding.tvDetailPrice.text = collectionPrice
+        binding.tvReleaseDate.text = releaseDate
 
         Glide.with(binding.ivDetailAvatar.context)
             .load(imageUrl)
             .into(binding.ivDetailAvatar)
         Log.e("dataName",name.toString())
         Log.e("dataAvatar",imageUrl.toString())
-        Log.e("dataDescription",description.toString())
+        Log.e("dataDescription",collectionPrice.toString())
     }
 
+    //fun observableLiveData(){}
 }

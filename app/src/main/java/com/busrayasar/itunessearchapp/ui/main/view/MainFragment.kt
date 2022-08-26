@@ -1,7 +1,6 @@
 package com.busrayasar.itunessearchapp.ui.main.view
 
 import android.annotation.SuppressLint
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,11 +10,8 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.core.widget.NestedScrollView
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.viewbinding.ViewBinding
-import com.busrayasar.itunessearchapp.R
 import com.busrayasar.itunessearchapp.data.api.ApiHelperClass
 import com.busrayasar.itunessearchapp.data.api.ApiServiceImplementation
 import com.busrayasar.itunessearchapp.databinding.FragmentMainBinding
@@ -23,14 +19,14 @@ import com.busrayasar.itunessearchapp.ui.base.ViewModelFactory
 import com.busrayasar.itunessearchapp.ui.main.adapter.ItunesAdapter
 import com.busrayasar.itunessearchapp.ui.main.viewmodel.ITunesViewModel
 import com.busrayasar.itunessearchapp.utils.Status
-
-private val ViewBinding.search: Any
-    get() {}
+import com.busrayasar.itunessearchapp.data.model.Result
+import androidx.lifecycle.ViewModelProviders
 
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
     private lateinit var mainViewModel: ITunesViewModel
-    private lateinit var adapter: ItunesAdapter
+    private lateinit var viewModelFactory: ViewModelFactory
+    private lateinit var recyclerViewAdapter: ItunesAdapter
 
 
     private lateinit var temp: String
@@ -45,7 +41,6 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        // return inflater.inflate(R.layout.fragment_main2, container, false)
         binding = FragmentMainBinding.inflate(inflater, container, false);
         return binding.root
     }
@@ -56,7 +51,6 @@ class MainFragment : Fragment() {
         setUpViewModel()
         setUpObserver()
 
-
         binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -64,7 +58,6 @@ class MainFragment : Fragment() {
                     mainViewModel.fetchPosts(query, limit)
                     temp = query
                 }
-
                 return false
             }
 
@@ -73,13 +66,12 @@ class MainFragment : Fragment() {
                     mainViewModel.fetchPosts(newText,limit)
                     temp = newText
                 }
-
                 return false
             }
         })
 
 
-        binding.scrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+        binding.nestedScrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight) {
                 limit += 2
                // binding.progressBar.visibility = View.VISIBLE
@@ -88,18 +80,22 @@ class MainFragment : Fragment() {
         })
 
     }
+    //observe our livedata
+    //lifeCycleOwner -> yaşam döngüsünün sahibi kim, this-> fragmentin kendisini verir
+    //vievLifecycleOwner ise lifecycleOwner kimse onu bize getitirir
     private fun setUpObserver() {
         mainViewModel.data.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Status.SUCCESS -> {
                     //binding.progressBar.visibility = View.GONE
                     it.data?.let { data -> renderList(data.results) }
-                    Log.e("STATUS/OK", it.toString())
-                    binding.recyclerView.visibility = View.VISIBLE
+                    Log.d("STATUS/OK", it.toString())
+                    binding.itemRecyclerView.visibility = View.VISIBLE
                 }
                 Status.LOADING -> {
+                    Log.d("STATUS/LOADING", it.toString())
                     //binding.progressBar.visibility = View.VISIBLE
-                    binding.recyclerView.visibility = View.GONE
+                    binding.itemRecyclerView.visibility = View.GONE
                 }
 
                 Status.ERROR -> {
@@ -112,38 +108,32 @@ class MainFragment : Fragment() {
     }
 
     private fun setUpViewModel() {
-        //val apiService: ApiService
-        mainViewModel = ViewModelProviders.of(
-            this,
-            ViewModelFactory(ApiHelperClass(ApiServiceImplementation()))
-        )
-            .get(ITunesViewModel::class.java)
+        //Mainfragmentla ItunesViewModeli ViewModelProviders ile bağla
+        viewModelFactory = ViewModelFactory(ApiHelperClass(ApiServiceImplementation()))
+        mainViewModel = ViewModelProviders.of(this, viewModelFactory).get(ITunesViewModel::class.java)
+        //mainViewModel = ViewModelProvider(this, viewModelFactory).get(ITunesViewModel::class.java)
     }
 
     private fun setUpUI() {
-        binding.recyclerView.layoutManager = GridLayoutManager(requireContext(),3,
-            GridLayoutManager.VERTICAL,false)
-        adapter = ITunesAdapter(arrayListOf())
-        binding.recyclerView.addItemDecoration(
+        binding.itemRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerViewAdapter = ItunesAdapter(arrayListOf())
+        /*
+        binding.itemRecyclerView.addItemDecoration(
             DividerItemDecoration(
-                binding.recyclerView.context,
-                (binding.recyclerView.layoutManager as LinearLayoutManager).orientation
+                binding.itemRecyclerView.context,
+                (binding.itemRecyclerView.layoutManager as LinearLayoutManager).orientation
             )
         )
+*/
+        binding.itemRecyclerView.adapter = recyclerViewAdapter
 
-        binding.recyclerView.adapter = adapter
     }
-
     @SuppressLint("NotifyDataSetChanged")
     private fun renderList(data: List<Result>) {
         val list = ArrayList<Result>()
         list.addAll(data)
-        adapter.changeData(list)
+        recyclerViewAdapter.changeData(list)
     }
-
-
-
-
 
 }
 

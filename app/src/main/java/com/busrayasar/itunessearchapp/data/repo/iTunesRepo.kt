@@ -11,5 +11,16 @@ class iTunesRepo(private val apiHelper: ApiHelperClass) {
         Log.e("queryRepository", query)
         return apiHelper.searchMoviesFromQuery(query, limit)
     }
-
+    fun searchMusicFromQuery(query: String, limit: Int): Single<Model>{
+        Log.e("queryRepository", query)
+        return apiHelper.searchMoviesFromQuery(query, limit)
+    }
+    fun searchEbookFromQuery(query: String, limit: Int): Single<Model>{
+        Log.e("queryRepository", query)
+        return apiHelper.searchMoviesFromQuery(query, limit)
+    }
+    fun searchPodcastFromQuery(query: String, limit: Int): Single<Model>{
+        Log.e("queryRepository", query)
+        return apiHelper.searchMoviesFromQuery(query, limit)
+    }
 }
