@@ -7,6 +7,7 @@ data class Model (
 
 
 /*
+wrapperType hepsinde "track" olarak dönüyor????
 {
  "resultCount":25,
  "results": [

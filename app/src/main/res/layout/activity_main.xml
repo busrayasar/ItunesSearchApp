@@ -21,13 +21,14 @@
             android:padding="@dimen/appbar_padding"
             android:text="@string/app_name"
             android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
-
+<!--
         <SearchView
             android:id="@+id/search_bar_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#D3E9F3"
             android:queryHint="Search Movies, Music, Ebook or Podcast!" />
+-->
     </com.google.android.material.appbar.AppBarLayout>
 
 
@@ -42,29 +43,17 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:contentDescription="Music" />
-        
-
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragmentContainerView"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/nav_btw_pages" />
+            android:contentDescription="tablayout" />
 
     </androidx.viewpager.widget.ViewPager>
 
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView2"
-        android:name="com.busrayasar.itunessearchapp.ui.main.adapter.PlaceholderFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout="@layout/activity_main"
-        app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintRight_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:id="@+id/fragmentContainerView"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/navigation" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -21,7 +21,7 @@ class ITunesViewModel(private val iTunesRepository: iTunesRepo): ViewModel() {
     private val compositeDisposable = CompositeDisposable()
 
     //internetten veri çekme işlemleri
-    fun fetchPosts(q: String, limit: Int) {
+    fun fetchPosts(q: String, limit: Int, wrapper:String) {
         data.postValue(Resource.loading(null))
         Log.e("queryViewModel",q)
         iTunesRepository.searchMoviesFromQuery(q,limit)
@@ -30,7 +30,7 @@ class ITunesViewModel(private val iTunesRepository: iTunesRepo): ViewModel() {
                 compositeDisposable.add(
                     it.subscribe({ model ->
                         data.value = Resource.success(model)
-                        Log.e("movieList", model.toString())
+                        Log.e("ResponseList", model.toString())
                     }, {
                         Log.e("ERR",data.value.toString())
                         data.value= Resource.error("Something went wrong", null)

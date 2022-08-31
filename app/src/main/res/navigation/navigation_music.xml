@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_music"
+    app:startDestination="@id/musicFragment">
+
+    <fragment
+        android:id="@+id/musicFragment"
+        android:name="com.busrayasar.itunessearchapp.ui.main.view.MusicFragment"
+        android:label="fragment_music"
+        tools:layout="@layout/fragment_music" >
+        <action
+            android:id="@+id/action_musicFragment_to_detailPageFragment2"
+            app:destination="@id/detailPageFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailPageFragment2"
+        android:name="com.busrayasar.itunessearchapp.ui.main.view.DetailPageFragment"
+        android:label="fragment_detail_page"
+        tools:layout="@layout/fragment_detail_page" >
+        <argument
+            android:name="name"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="No Name" />
+        <argument
+            android:name="avatar"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="No Avatar" />
+        <argument
+            android:name="detail"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="No Detail" />
+    </fragment>
+</navigation>

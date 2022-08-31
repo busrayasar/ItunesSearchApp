@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.busrayasar.itunessearchapp.ui.main.view.MainFragment"
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_detailPageFragment5"
+            app:destination="@id/detailPageFragment5" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailPageFragment5"
+        android:name="com.busrayasar.itunessearchapp.ui.main.view.DetailPageFragment"
+        android:label="fragment_detail_page"
+        tools:layout="@layout/fragment_detail_page" >
+        <argument
+            android:name="name"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="No Name" />
+        <argument
+            android:name="avatarArtWorkUrl100"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="No Avatar" />
+        <argument
+            android:name="price"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="No Detail" />
+        <argument
+            android:name="releaseDate"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="No Detail" />
+    </fragment>
+</navigation>

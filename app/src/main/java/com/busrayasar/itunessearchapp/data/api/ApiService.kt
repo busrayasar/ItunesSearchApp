@@ -11,11 +11,15 @@ interface ApiService {
     @GET("")
     fun getQuery(
         @Query("term") term: String,
-        @Query("limit") limit: Int
+        @Query("limit") limit: Int,
+        @Query("wrapperType") wrapperType: String
     ):Single<Model>
 }
 
+//RxJava'da Single, Observable vs. kullanılır, kullanım açısından daha olanakları var
 /*
 * Single<T> -> Emits either a single item or an error event. The reactive version of a method call.
 * Yani bir tane single item alıyor, veriyi bir kere çekiyor ve duruyor
 * */
+
+//1

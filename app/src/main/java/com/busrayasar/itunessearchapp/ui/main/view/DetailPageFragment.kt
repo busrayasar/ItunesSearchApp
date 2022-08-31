@@ -15,8 +15,6 @@ import com.busrayasar.itunessearchapp.databinding.FragmentDetailPageBinding
 class DetailPageFragment : Fragment() {
   private lateinit var binding: FragmentDetailPageBinding
 
-  //private lateinit var detailResultViewModel: DetailPageViewModel
-
   override fun onCreate(savedInstanceState: Bundle?){
       super.onCreate(savedInstanceState)
   }
@@ -34,9 +32,7 @@ class DetailPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       // detailResultViewModel= ViewModelProviders.of(this).get(DetailPageViewModel::class.java)
-
-// Her item “artworkUrl100, collectionPrice, collectionName, releaseDate” bilgilerini içermeli.
+        // Her item “artworkUrl100, collectionPrice, collectionName, releaseDate” bilgilerini içermeli.
         val name = arguments?.getString("name") //collectionName
         val imageUrl = arguments?.getString("avatarArtWorkUrl100")
         val releaseDate = arguments?.getString("releaseDate")

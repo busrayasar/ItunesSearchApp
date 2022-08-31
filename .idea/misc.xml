@@ -5,9 +5,13 @@
       <map>
         <entry key="..\:/Users/busra/AndroidStudioProjects/iTunesSearchApp2/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/busra/AndroidStudioProjects/iTunesSearchApp2/app/src/main/res/layout/fragment_detail_page.xml" value="0.22916666666666666" />
+        <entry key="..\:/Users/busra/AndroidStudioProjects/iTunesSearchApp2/app/src/main/res/layout/fragment_ebook.xml" value="0.2484375" />
         <entry key="..\:/Users/busra/AndroidStudioProjects/iTunesSearchApp2/app/src/main/res/layout/fragment_item_list.xml" value="0.24322916666666666" />
         <entry key="..\:/Users/busra/AndroidStudioProjects/iTunesSearchApp2/app/src/main/res/layout/fragment_main.xml" value="0.24051282051282052" />
         <entry key="..\:/Users/busra/AndroidStudioProjects/iTunesSearchApp2/app/src/main/res/layout/fragment_main2.xml" value="0.22916666666666666" />
+        <entry key="..\:/Users/busra/AndroidStudioProjects/iTunesSearchApp2/app/src/main/res/layout/fragment_movies.xml" value="0.2484375" />
+        <entry key="..\:/Users/busra/AndroidStudioProjects/iTunesSearchApp2/app/src/main/res/layout/fragment_music.xml" value="0.23333333333333334" />
+        <entry key="..\:/Users/busra/AndroidStudioProjects/iTunesSearchApp2/app/src/main/res/layout/fragment_podcast.xml" value="0.2484375" />
         <entry key="..\:/Users/busra/AndroidStudioProjects/iTunesSearchApp2/app/src/main/res/layout/item_design_layout.xml" value="0.24427083333333333" />
       </map>
     </option>

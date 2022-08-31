@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_ebook"
+    app:startDestination="@id/ebookFragment">
+
+    <fragment
+        android:id="@+id/ebookFragment"
+        android:name="com.busrayasar.itunessearchapp.ui.main.view.EbookFragment"
+        android:label="fragment_ebook"
+        tools:layout="@layout/fragment_ebook" >
+        <action
+            android:id="@+id/action_ebookFragment_to_detailPageFragment4"
+            app:destination="@id/detailPageFragment4" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailPageFragment4"
+        android:name="com.busrayasar.itunessearchapp.ui.main.view.DetailPageFragment"
+        android:label="fragment_detail_page"
+        tools:layout="@layout/fragment_detail_page" />
+</navigation>
